@@ -17,7 +17,7 @@ def _mergesort(left, right):
 		if left[i] < right[j]:
 			newarr.append(left[i])
 			i += 1
-		elif left[i] > right[j]:
+		else:
 			newarr.append(right[j])
 			j += 1
 		if i == len(left) or j == len(right):
@@ -31,5 +31,5 @@ assert mergesort([7,6,5,4,3,2,1]) == [1,2,3,4,5,6,7]
 # Even number of elements
 assert mergesort([6,5,4,3,2,1]) == [1,2,3,4,5,6]
 # Repetition of elements
-# assert mergesort([6,5,4,3,2,1,6]) == [1,2,3,4,5,6,6]
+assert mergesort([6,5,4,3,2,1,6]) == [1,2,3,4,5,6,6]
 
