@@ -1,24 +1,23 @@
 class Node:
 
-	def __init__(self, value):
-		self.value = value
-		self.next = None
+    def __init__(self, value):
+        self.value = value
+        self.next = None
 
-	def getValue(self):
-		return self.value
+    def getValue(self):
+        return self.value
 
-	def setValue(self, newVvalue):
-		self.value = newVvalue
+    def setValue(self, newVvalue):
+        self.value = newVvalue
 
-	def getNext(self):
-		return self.next
+    def getNext(self):
+        return self.next
 
-	def setNext(self, newNext):
-		self.next = newNext
+    def setNext(self, newNext):
+        self.next = newNext
 
-	def __str__(self):
-		return str(self.getValue())
-
+    def __str__(self):
+        return str(self.getValue())
 
 
 # Test cases
