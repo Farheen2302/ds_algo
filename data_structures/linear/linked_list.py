@@ -66,6 +66,31 @@ class UOLinkedList:
 		tmp.setNext(None)
 		self.size += 1
 
+	def insert(self, pos, item):
+		tmp = Node(item)
+		i = 1
+		current = self.head
+		previous = None
+		if pos > 1:
+			while i < pos and current != None:
+				previous = current
+				current = current.getNext()
+				i += 1
+			previous.setNext(tmp)
+			tmp.setNext(current)
+		else:
+			self.add(item)
+
+	def index(self, item):
+		pos = 0
+		current = self.head
+		while current != None:
+			pos += 1
+			if current.getValue() == item:
+				return pos
+			else:
+				current = current.getNext()
+
 # Test Cases
 mylist = UOLinkedList()
 mylist.add("Saurav")
@@ -90,3 +115,7 @@ mylist.remove("Square")
 assert mylist.getSize() == 4
 mylist.append("Panther")
 assert mylist.getSize() == 5
+mylist.insert(3, "Six")
+assert mylist.index("Six") == 3
+mylist.insert(4, "Eight")
+assert mylist.index("Eight") == 4
