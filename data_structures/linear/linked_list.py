@@ -35,7 +35,7 @@ class UOLinkedList:
     def search(self, item):
         current = self.head
         found = False
-        while current != None and not found:
+        while current != None:
             if current.getValue() == item:
                 found = True
             else:
@@ -47,7 +47,7 @@ class UOLinkedList:
         current = self.head
         previous = None
         found = False
-        while not found:
+        while not found and current != None:
             if current.getValue() == item:
                 found = True
             else:
