@@ -43,7 +43,24 @@ class HashMap:
 		return found
 
 
-	# def delete(self, key):
+	def delete(self, key):
+		hash_val = self.hash(key)
+		if self.slots[hash_val] == key:
+			self.slots[hash_val] = None
+			self.data[hash_val] = None
+		else:
+			found = None
+			done = False
+			rehash_val = self.rehash(hash_val)
+			while not done:
+				if self.slots[rehash_val] == key:
+					self.slots[rehash_val] = None
+					self.data[rehash_val] = None
+					done = True
+				elif rehash_val == hash_val:
+					done = True
+				else:
+					rehash_val = self.rehash(rehash_val)
 
 
 
@@ -60,7 +77,7 @@ class HashMap:
 	def rehash(self, hash):
 		return (hash + 1) % self.size
 
-
+#Test Cases
 H=HashMap()
 H[54]="cat"
 H[26]="dog"
@@ -75,4 +92,8 @@ assert H[20] == 'chicken'
 assert H[17] == 'tiger'
 H[20]='duck'
 assert H[20] == 'duck'
+assert H[17] == 'tiger'
+H.delete(17)
+assert H[17] == None
+
 
