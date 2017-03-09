@@ -22,3 +22,11 @@ def _left_rotate(arr, n):
 
 left_rotate(arr, d, n)
 [print(i, end=" ") for i in arr]
+
+
+# Better solution
+for i in range(n):
+	m = d + i
+	if m > n-1:
+		m %= n
+	print(arr[m], end=' ')
