@@ -15,7 +15,6 @@
 def SortedInsert(head, data):
     node = Node(data)
     if head == None:
-        print(node.data)
         return node
     current = head
     while current.next is not None:
