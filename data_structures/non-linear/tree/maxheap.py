@@ -1,5 +1,5 @@
 # Max Heap
-class BinaryHeap:
+class MaxBinaryHeap:
 
     def __init__(self):
         self.list = [0]
