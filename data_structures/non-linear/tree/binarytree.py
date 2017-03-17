@@ -21,7 +21,7 @@ class BinaryTree:
         if self.getLeftChild() == None:
             self.leftChild = BinaryTree(newNode)
         else:
-        	tmp = self.getLeftChild()
+        	tmp = BinaryTree(newNode)
         	tmp.leftChild = self.leftChild
         	self.leftChild = tmp
 
@@ -29,7 +29,7 @@ class BinaryTree:
     	if self.getRightChild() == None:
     		self.rightChild = BinaryTree(newNode)
     	else:
-    		tmp = self.getRightChild()
+    		tmp = BinaryTree(newNode)
     		tmp.rightChild = self.rightChild
     		self.rightChild = tmp
 
