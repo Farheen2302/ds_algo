@@ -39,7 +39,7 @@ class BinarySearchTree:
 				currentNode.rightChild = TreeNode(key, val, parent=currentNode)
 
 	def __getitem__(self, k):
-		self.get(k)
+		return self.get(k)
 
 	def get(self, key):
 		if self.root:
@@ -64,5 +64,4 @@ mytree[4] = "blue"
 mytree[6] = "yellow"
 mytree[2] = "at"
 
-print(mytree[6])
-print(mytree[2])
+assert mytree[2] == "at"
