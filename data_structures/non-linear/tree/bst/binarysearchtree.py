@@ -43,7 +43,7 @@ class BinarySearchTree:
 
 	def get(self, key):
 		if self.root:
-			return self._get(key, self.root)
+			return self._get(key, self.root).payload
 		else:
 			return None
 
@@ -51,11 +51,68 @@ class BinarySearchTree:
 		if not currentNode:
 			return None
 		elif key == currentNode.key:
-			return currentNode.payload
+			return currentNode
 		elif key < currentNode.key:
 			return self._get(key, currentNode.leftChild)
 		else:
 			return self._get(key, currentNode.rightChild)
+
+	def __delitem__(self, key):
+		self.remove(key)
+
+	def remove(self, key):
+		if self.size > 1:
+			nodeToRemove = self._get(key)
+			if nodeToRemove:
+				self._remove(nodeToRemove)
+				self.size -= 1
+			else:
+				raise KeyError("Key wasn't there !! ")
+		elif self.size == 1 and self.root.key == key:
+			self.root = None
+			self.size -= 1
+		else:
+			raise KeyError("Key wasn't there !! ")
+
+	def _remove(self, currentNode):
+		if currentNode.isLeaf():
+			if currentNode == currentNode.parent.leftChild:
+				currentNode.parent.leftChild = None
+			else:
+				currentNode.parent.rightChild = None
+		elif currentNode.hasBothChildren():
+			succ = currentNode.findSuccessor()
+			succ.spliceOut()
+			currentNode.key = succ.key
+			currentNode.payload = succ.parent
+		else:
+			if currentNode.hasLeftChild():
+				if currentNode.isLeftChild():
+					currentNode.leftChild.parent = currentNode.parent
+					currentNode.parent.leftChild = currentNode.leftChild
+				elif currentNode.isRightChild():
+					currentNode.leftChild.parent = currentNode.parent
+					currentNode.parent.rightChild = currentNode.leftChild
+				# Root
+				else:
+					currentNode.replaceNodeData(currentNode.leftChild.key, currentNode.leftChild.payload, 
+						currentNode.leftChild.leftChild, currentNode.leftChild.rightChild)
+			else:
+				if currentNode.isLeftChild():
+					currentNode.rightChild.parent = currentNode.parent
+					currentNode.parent.leftChild = currentNode.rightChild
+				elif currentNode.isRightChild():
+					currentNode.rightChild.parent = currentNode.parent
+					currentNode.parent.rightChild = currentNode.rightChild
+				else:
+					currentNode.replaceNodeData(currentNode.rightChild.key, currentNode.rightChild.payload,
+						currentNode.rightChild.leftChild, currentNode.rightChild.rightChild)
+
+	def findSuccessor(self):
+		
+
+
+
 
 
 mytree = BinarySearchTree()
@@ -63,5 +120,5 @@ mytree[3] = "red"
 mytree[4] = "blue"
 mytree[6] = "yellow"
 mytree[2] = "at"
-
 assert mytree[2] == "at"
+assert mytree[4] == 'blue'
