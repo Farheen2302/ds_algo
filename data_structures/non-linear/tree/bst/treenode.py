@@ -23,7 +23,7 @@ class TreeNode:
         return self.parent and self.parent.rightChild == self
 
     def isLeaf(self):
-        return not (self.rightChild or self.lefChild)
+        return not (self.rightChild or self.leftChild)
 
     def hasAnyChildren(self):
         return self.rightChild or self.leftChild
