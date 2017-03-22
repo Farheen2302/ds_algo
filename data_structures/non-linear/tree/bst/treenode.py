@@ -6,6 +6,7 @@ class TreeNode:
         self.leftChild = left
         self.rightChild = right
         self.parent = parent
+        self.bf = 0
 
     def hasLeftChild(self):
         return self.leftChild

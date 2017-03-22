@@ -32,11 +32,48 @@ class BinarySearchTree:
 				self._put(key, val, currentNode.leftChild)
 			else:
 				currentNode.leftChild = TreeNode(key, val, parent=currentNode)
+				self.updateBalance(currentNode.leftChild)
 		else:
 			if currentNode.hasRightChild():
 				self._put(key, val, currentNode.rightChild)
 			else:
 				currentNode.rightChild = TreeNode(key, val, parent=currentNode)
+				self.updateBalance(currentNode.rightChild)
+
+	def updateBalance(self, node):
+		if node.bf > 1 or node.bf < -1:
+			self.rebalance(node)
+			return
+		if node.parent:
+			if node.isLeftChild():
+				node.parent.bf += 1
+			elif node.isRightChild():
+				node.parent -= 1
+			if node.parent.bf != 0:
+				self.updateBalance(node.parent)
+
+	def rotatateLeft(self, rotroot):
+		newRoot = rotroot.rightChild
+		rotroot.rightChild = newRoot.leftChild
+		rotroot.parent = newRoot
+		if newRoot.leftChild:
+			newRoot.leftChild.parent = rotroot
+		newRoot.parent = rotroot.parent
+		if rotroot.isRoot():
+			self.root = newRoot
+		else:
+			if rotroot.isLeftChild():
+				rotroot.parent.leftChild = newRoot
+			else:
+				rotroot.parent.rightChild = newRoot
+		newRoot.leftChild = rotroot
+		rotRoot.bf = rotRoot.bf + 1 - min(newRoot.bf, 0)
+    	newRoot.bf = newRoot.bf + 1 + max(rotRoot.bf, 0)
+
+    def rotateRight(self, rotroot):
+
+    def rebalance(self, node):
+
 
 	def __getitem__(self, k):
 		return self.get(k)
