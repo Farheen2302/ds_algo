@@ -68,7 +68,7 @@ class BinarySearchTree:
 				rotroot.parent.rightChild = newRoot
 		newRoot.leftChild = rotroot
 		rotRoot.bf = rotRoot.bf + 1 - min(newRoot.bf, 0)
-    	newRoot.bf = newRoot.bf + 1 + max(rotRoot.bf, 0)
+		newRoot.bf = newRoot.bf + 1 + max(rotRoot.bf, 0)
 
     def rotateRight(self, rotroot):
 
