@@ -26,7 +26,7 @@ class Graph:
 
 	def addEdge(self, f, t, cost=0):
 		if f not in self.vertList:
-			self.addVertex(n)
+			self.addVertex(f)
 		if t not in self.vertList:
 			self.addVertex(t)
 		self.vertList[f].addNeighbour(self.vertList[t],cost)
@@ -49,4 +49,4 @@ g.addEdge(5,2,1)
 # for v in g:
 # 	for w in v.getConnections():
 # 		print("( %s, %s )" % (v.getId(), w.getId()))
-assert str(g.getVertex(3)) == '3 connected to : [5, 4]'
+assert str(g.getVertex(3)) == '3 is connected to : [4, 5]'

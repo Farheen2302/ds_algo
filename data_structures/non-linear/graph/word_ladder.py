@@ -1,4 +1,4 @@
-from pythonds import Graph
+from graph import Graph
 from pythonds import Queue
 
 
@@ -25,15 +25,26 @@ def buildGraph(wordFile):
 def bfs(g, start):
 	queue = Queue()
 	queue.enqueue(start)
+	start.setPred(None)
 	while(queue.size() > 0):
 		current = queue.dequeue()
 		for nbr in current.getConnections():
 			if nbr.getColor() == 'white':
 				nbr.setColor('grey')
+				nbr.setPred(current)
 				queue.enqueue(nbr)
 		current.setColor('black')
 
+def traverse(y):
+	x = y
+	while(x.getPred()):
+		print(str(x))
+		x = x.getPred()
+	print(x.getId())
 
 
-g = buildGraph("D:\\GitHub\\ds_algo\\data_structures\\non-linear\\graph\\words.txt")
-bfs(g, g.getVertex('sage'))
+
+
+g = buildGraph("F:\\GitHub\\ds_algo\\data_structures\\non-linear\\graph\\words.txt")
+bfs(g, g.getVertex('step'))
+traverse(g.getVertex('poop'))
