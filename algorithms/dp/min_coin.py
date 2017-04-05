@@ -13,4 +13,15 @@ def rec_min_coin(amt, coins):
     return minimum
 
 
-assert (rec_min_coin(11, [9, 6, 5, 1])) == 2
+def memo_min_coin(amt, coins, result):
+    if amt in result:
+        return result[amt]
+    minimum = sys.maxsize
+    for i in coins:
+        if i <= amt:
+            minimum = min(minimum, memo_min_coin(amt - i, coins, result) + 1)
+    result[amt] = minimum
+    return minimum
+
+assert (memo_min_coin(11, [9, 6, 5], {0: 0})) == 2
+assert  (rec_min_coin(3, [9, 6, 5, 1]))  == 3
