@@ -27,4 +27,4 @@ def dp_coin_changes(amt, coins):
     return (result[len(coins)][amt])
 
 
-print(dp_coin_changes(5, [1, 2, 3]))
+assert (dp_coin_changes(5, [1, 2, 3])) == 5
